@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ProjekController extends Controller
 {
@@ -29,7 +30,7 @@ class ProjekController extends Controller
 
         $fotoPath = null;
         if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('projek', 'public'); // Simpan di 'storage/app/public/projek'
+            $fotoPath = $request->file('foto')->store('projek', 'public');
         }
 
         try {
@@ -56,10 +57,35 @@ class ProjekController extends Controller
     public function update(Request $request, $id)
     {
         $projek = Project::findOrFail($id);
-        $projek->update($request->all());
 
-        return redirect()->route('admin.projek.index')->with('success', 'Berhasil memperbarui pendidikan!');
+        $request->validate([
+            'judul_projek' => 'required|string|max:255',
+            'deskripsi_projek' => 'required|string',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $data = [
+            'judul_projek' => $request->judul_projek,
+            'deskripsi_projek' => $request->deskripsi_projek,
+        ];
+
+        if ($request->hasFile('foto')) {
+            if ($projek->foto) {
+                Storage::disk('public')->delete($projek->foto);
+            }
+
+            $data['foto'] = $request->file('foto')->store('projek', 'public');
+        }
+
+        try {
+            $projek->update($data);
+            return redirect()->route('admin.projek.index')->with('success', 'Project berhasil diperbarui!');
+        } catch (\Exception $e) {
+            Log::error($e);
+            return back()->with('error', 'Terjadi kesalahan saat memperbarui data: ' . $e->getMessage());
+        }
     }
+
 
     public function destroy($id)
     {

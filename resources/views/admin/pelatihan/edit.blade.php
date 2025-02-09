@@ -26,8 +26,8 @@
 
                 <div class="mb-3">
                     <label for="keterangan" class="form-label fw-bold">Keterangan</label>
-                    <textarea class="form-control" id="keterangan" name="keterangan" rows="4" value="{{ $pelatihan->keterangan }}"
-                        required></textarea>
+                    <textarea class="form-control" id="keterangan" name="keterangan" rows="4"
+                        required>{{ old('keterangan', default: $pelatihan->keterangan) }}</textarea>
                 </div>
 
                 <div class="d-flex justify-content-between">

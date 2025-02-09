@@ -39,10 +39,10 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav justify-content-end">
-                            <li class="nav-item active"><a class="nav-link" href="#">Beranda</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Tentang</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Resume</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Portfolio</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="#home_banner_area">Beranda</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#about_area">Tentang</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                         </ul>
                     </div>
                 </div>
@@ -51,8 +51,8 @@
     </header>
     <!--================ End Header Area =================-->
 
-    <!--================ Start Home Banner Area =================-->
-    <section class="home_banner_area">
+    <!--================ Start Dashboard Banner Area =================-->
+    <section class="home_banner_area" id="home_banner_area">
         <div class="banner_inner">
             <div class="container">
                 <div class="row">
@@ -76,10 +76,10 @@
             </div>
         </div>
     </section>
-    <!--================ End Home Banner Area =================-->
+    <!--================ End Dashboard Banner Area =================-->
 
     <!--================ Start About Us Area =================-->
-    <section class="about_area section_gap">
+    <section class="about_area section_gap" id="about_area">
         <div class="container">
             <div class="row justify-content-start align-items-center">
                 <div class="col-lg-5">
